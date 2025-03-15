@@ -2,7 +2,8 @@ import streamlit as st
 import pickle
 import numpy as np
 import tensorflow as tf
-from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+ 
 
 
 # Load Model 1 (Machine Learning - Numeric Data)
@@ -52,6 +53,7 @@ elif page == "📖 การพัฒนาโมเดล Machine Learning แ�
         - Padding & Truncation: Ensure all sequences have the same length by padding shorter ones and truncating longer ones.
         - Word Embedding: Represent words as dense numerical vectors to capture semantic meanings and improve the model’s ability to understand language patterns.
              
+
     ## 2.  Algorithm Theory
     - **Model 1:** Traditional Machine Learning Algorithms
          - For numerical data, the model employs Decision Trees or Random Forests:
@@ -66,6 +68,7 @@ elif page == "📖 การพัฒนาโมเดล Machine Learning แ�
     
     ## 3. Model Development Steps
              
+
     - **Model 1:**
       1. Feature Engineering & Selection – Identify key features and preprocess the data.
       2. Algorithm Selection – Choose between Decision Tree or Random Forest.
