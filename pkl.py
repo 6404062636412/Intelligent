@@ -2,7 +2,8 @@ import streamlit as st
 import pickle
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+from keras.preprocessing.sequence import pad_sequences
+
 
 # Load Model 1 (Machine Learning - Numeric Data)
 with open("finalized_model.pkl", "rb") as file:
