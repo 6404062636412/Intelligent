@@ -3,3 +3,4 @@ tensorflow
 numpy
 pandas
 keras_preprocessing
+pickle5
