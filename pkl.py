@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 import tensorflow as tf
 import keras
+
 from keras_preprocessing.sequence import pad_sequences
 # from tensorflow.keras.preprocessing.sequence import pad_sequences
 # python -m streamlit run pkl.py 
@@ -15,7 +16,9 @@ with open("finalized_model.pkl", "rb") as file:
     model1 = pickle.load(file)
 
 # Load Model 2 (Neural Network - Text Data)
+
 model2 = keras.models.load_model("Disaster_modelv2.h5")
+
 
 # Load Tokenizer for Model 2
 with open("tokenizer.pkl", "rb") as file:
@@ -154,6 +157,7 @@ elif page == "📝 Model 2 Neural Network - Disaster Tweet Classification":
     if st.button("⚡ Predict"):
         try:
             sequences = tokenizer2.texts_to_sequences([input_text])
+            
             padded_sequences = pad_sequences(sequences, maxlen=100)
             prediction = model2.predict(padded_sequences)
             prediction_class = (prediction[0] >= 0.5).astype(int)
