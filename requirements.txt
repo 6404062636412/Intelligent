@@ -1,6 +1,6 @@
 streamlit
 tensorflow
+keras
 numpy
 pandas
-keras_preprocessing
-pickle5
+scikit-learn
