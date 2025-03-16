@@ -32,7 +32,7 @@ page = st.sidebar.radio("📌 Select Page",
                          "📚 About Model 2"])
 
 # Home Page
-if page == "🏠 Home":
+if page == "🏠 Homee":
     st.markdown("<h1 style='text-align: center; color: #FF5733;'>Welcome to ML & NN Prediction App</h1>", unsafe_allow_html=True)
     st.markdown("### 🤖 This app provides two types of predictions:")
     st.write("- **📊 Model 1:** Predict using a machine learning model based on numerical input.")
