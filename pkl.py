@@ -24,7 +24,7 @@ with open("tokenizer.pkl", "rb") as file:
 # Sidebar for Navigation
 st.sidebar.title("🔍 Navigation")
 page = st.sidebar.radio("📌 Select Page", 
-                        ["🏠 Home",
+                        ["🏠 Homee",
                          "📖 การพัฒนาโมเดล Machine Learning และ Neural Network", 
                          "📊 Model 1 Machine Learning - Purchase Prediction", 
                          "📝 Model 2 Neural Network - Disaster Tweet Classification", 
