@@ -2,9 +2,11 @@ import streamlit as st
 import pickle
 import numpy as np
 import tensorflow as tf
-# from keras_preprocessing.sequence import pad_sequences
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+import keras
+from keras_preprocessing.sequence import pad_sequences
+# from tensorflow.keras.preprocessing.sequence import pad_sequences
 # python -m streamlit run pkl.py 
+
  
 
 
@@ -13,7 +15,7 @@ with open("finalized_model.pkl", "rb") as file:
     model1 = pickle.load(file)
 
 # Load Model 2 (Neural Network - Text Data)
-model2 = tf.keras.models.load_model("Disaster_modelv2.h5")
+model2 = keras.models.load_model("Disaster_modelv2.h5")
 
 # Load Tokenizer for Model 2
 with open("tokenizer.pkl", "rb") as file:
