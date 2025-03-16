@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 import tensorflow as tf
 import keras
+import matplotlib.pyplot as plt
 
 from keras_preprocessing.sequence import pad_sequences
 # from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -26,24 +27,24 @@ with open("tokenizer.pkl", "rb") as file:
 
 # Sidebar for Navigation
 st.sidebar.title("🔍 Navigation")
-page = st.sidebar.radio("📌 Select Page", 
-                        ["🏠 Homee",
-                         "📖 การพัฒนาโมเดล Machine Learning และ Neural Network", 
-                         "📊 Model 1 Machine Learning - Purchase Prediction", 
-                         "📝 Model 2 Neural Network - Disaster Tweet Classification", 
-                         "📚 About Model 1", 
-                         "📚 About Model 2"])
+page = st.sidebar.radio(" Select Page", 
+                        [" Homee",
+                         " การพัฒนาโมเดล Machine Learning และ Neural Network", 
+                         " Model 1 Machine Learning - Purchase Prediction", 
+                         " Model 2 Neural Network - Disaster Tweet Classification", 
+                         " About Model 1", 
+                         " About Model 2"])
 
 # Home Page
-if page == "🏠 Homee":
+if page == " Homee":
     st.markdown("<h1 style='text-align: center; color: #FF5733;'>Welcome to ML & NN Prediction App</h1>", unsafe_allow_html=True)
-    st.markdown("### 🤖 This app provides two types of predictions:")
-    st.write("- **📊 Model 1:** Predict using a machine learning model based on numerical input.")
-    st.write("- **📝 Model 2:** Predict using a neural network model based on text input.")
+    st.markdown("###  This app provides two types of predictions:")
+    st.write("- ** Model 1:** Predict using a machine learning model based on numerical input.")
+    st.write("- ** Model 2:** Predict using a neural network model based on text input.")
     st.markdown("<h3 style='text-align: center;'>Use the sidebar to navigate.</h3>", unsafe_allow_html=True)
 
 # Development Process
-elif page == "📖 การพัฒนาโมเดล Machine Learning และ Neural Network":
+elif page == " การพัฒนาโมเดล Machine Learning และ Neural Network":
     st.title("แนวทางการพัฒนาโมเดล Machine Learning และ Neural Network")
     st.write("""
     ## 1. Data Preparation
@@ -102,65 +103,81 @@ elif page == "📖 การพัฒนาโมเดล Machine Learning แ�
     """)
 
 # About Model 1 (Machine Learning)
-elif page == "📚 About Model 1":
+elif page == " About Model 1":
     st.markdown("<h1 style='color: #3498db;'>About Model 1 - Machine Learning</h1>", unsafe_allow_html=True)
     st.write("""
-    🧠 **Model 1** is built using **traditional Machine Learning algorithms** to predict whether a user will make a purchase based on their personal and behavioral data.
+     **Model 1** is built using **traditional Machine Learning algorithms** to predict whether a user will make a purchase based on their personal and behavioral data.
     This model is commonly used in fields like finance, healthcare, and business analytics.
     """)
-    st.markdown("### 🚀 Features:")
+    st.markdown("###  Features:")
     st.write("- Uses structured numerical and categorical data as input.")
     st.write("- Performs **classification** to predict purchase behavior.")
     st.write("- Trained on user attributes such as **Age, Education Level, Income, and Website Visits**.")
     
-    st.markdown("### 📊 Dataset Information:")
+    st.markdown("###  Dataset Information:")
     st.write("- **Columns:** Age, Education_Level, Income, Website_Visits, Purchase")
     st.write("- **Target Variable:** Purchase (1 = Made a purchase, 0 = Did not make a purchase)")
     st.write("- **Missing Data:** Some missing values in Website_Visits")
 
 # About Model 2 (Neural Network)
-elif page == "📚 About Model 2":
+elif page == " About Model 2":
     st.markdown("<h1 style='color: #9b59b6;'>About Model 2 - Neural Network for Text</h1>", unsafe_allow_html=True)
     st.write("""
-    🔥 **Model 2** is a deep learning model designed to analyze and classify textual data. It uses **Natural Language Processing (NLP)** 
+     **Model 2** is a deep learning model designed to analyze and classify textual data. It uses **Natural Language Processing (NLP)** 
     techniques to predict whether a tweet is related to a disaster.
     """)
-    st.markdown("### ✨ Features:")
+    st.markdown("###  Features:")
     st.write("- Takes tweet text as input and converts it into numerical embeddings.")
     st.write("- Uses **Neural Networks (LSTM, GRU, or Dense layers)** for text classification.")
     st.write("- Ideal for **disaster detection in social media posts**.")
     
-    st.markdown("### 📊 Dataset Information:")
+    st.markdown("###  Dataset Information:")
     st.write("- **Columns:** id, keyword, location, text, target")
     st.write("- **Target Variable:** target (1 = Disaster-related tweet, 0 = Not disaster-related)")
     st.write("- **Missing Data:** Some missing values in location")
 
 
 # Model 1 - Numeric Prediction
-elif page == "📊 Model 1 Machine Learning - Purchase Prediction":
+if page == " Model 1 Machine Learning - Purchase Prediction":
     st.markdown("<h1 style='color: #2ecc71;'>Machine Learning - Purchase Prediction</h1>", unsafe_allow_html=True)
-    input_data = st.text_input("🔢 Enter Age, Education_Level, Income, Website_Visits, Purchase (50.0,50000.0,19.0):")
+    input_data = st.text_input(" Enter Age, Education_Level, Income, Website_Visits, Purchase (50.0,50000.0,19.0):")
     
-    if st.button("⚡ Predict"):
+    if st.button(" Predict"):
         try:
             data = np.array(input_data.split(","), dtype=float).reshape(1, -1)
             prediction = model1.predict(data)
-            st.success(f"🎯 Prediction Result: **{prediction[0]}**")
+            st.success(f" Prediction Result: **{prediction[0]}**")
+
+            # Create a bar chart for the prediction result
+            fig, ax = plt.subplots()
+            ax.bar(["Purchase Prediction"], [prediction[0]])
+            ax.set_ylabel("Prediction Probability")
+            ax.set_title("Purchase Prediction Result")
+            st.pyplot(fig)
+
         except:
-            st.error("❌ Invalid input. Please enter numerical values correctly.")
+            st.error(" Invalid input. Please enter numerical values correctly.")
 
 # Model 2 - Text Prediction
-elif page == "📝 Model 2 Neural Network - Disaster Tweet Classification":
+elif page == " Model 2 Neural Network - Disaster Tweet Classification":
     st.markdown("<h1 style='color: #e74c3c;'>Neural Network - Disaster Tweet Classification (Text)</h1>", unsafe_allow_html=True)
-    input_text = st.text_area("🖊️ Enter text for prediction:")
+    input_text = st.text_area(" Enter text for prediction:(บางทีมัน bug ต้องรีเว็บก่อนทีนึงครับ)")
     
-    if st.button("⚡ Predict"):
+    if st.button(" Predict"):
         try:
             sequences = tokenizer2.texts_to_sequences([input_text])
-            
             padded_sequences = pad_sequences(sequences, maxlen=100)
             prediction = model2.predict(padded_sequences)
             prediction_class = (prediction[0] >= 0.5).astype(int)
-            st.success(f"🎯 Prediction Result: **{prediction_class[0]}** (0 = Negative, 1 = Positive)")
+            st.success(f" Prediction Result: **{prediction_class[0]}** (0 = Negative, 1 = Positive)")
+
+            # Create a pie chart for the text classification result
+            labels = ['Negative', 'Positive']
+            sizes = [1 - prediction_class[0], prediction_class[0]]
+            fig, ax = plt.subplots()
+            ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+            ax.set_title("Disaster Tweet Classification Result")
+            st.pyplot(fig)
+
         except Exception as e:
-            st.error(f"❌ Error: {e}")
+            st.error(f" Error: {e}")
